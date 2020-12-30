@@ -1,65 +1,26 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Month from '../components/month';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className="ml-2 bg-indigo-100">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+    <Month month="JANUARY" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="FEBRUARY" celebrants={['1st - Tirana Lakai (Nana)', '8th - Naomi Fonua', '21st - LeiSiu Lakai', '23rd Helaman Teiko Fonua Jr (Teiko)']} />
+    <Month month="MARCH" celebrants={['13th - Elone John Charles Jr Fonua (Jr)', '25th - Malia Darlene Fonua', '30th - Elone Teiko Fonua']} />
+    <Month month="APRIL" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="MAY" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="JUNE" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="JULY" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="AUGUST" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="SEPTEMBER" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="OCTOBER" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="NOVEMBER" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
+    <Month month="DECEMBER" celebrants={['7th - Rena Rose Lakai', '16th - Kalolaine Fonua Beebe (Kalo)', '20th - Alma Champion Fonua', '28th - Sioeli Kupu']} />
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
-  )
+  );
 }
