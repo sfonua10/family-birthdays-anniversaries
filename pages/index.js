@@ -93,7 +93,7 @@ export default function Home() {
           "12th - Lisa Mariko Fonua",
           "19th - Toka & Gina's Anniversary",
           "20th - Gina Rita Lakai",
-          "27th - Via Fonua",
+          "27th - Via Linh Fonua",
           "29th - Ana Terewai Moleni-Fonua"
         ]}
       />
