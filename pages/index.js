@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <div className="ml-2 bg-indigo-100">
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Fonua Family Birthdays and Anniversaries</title>
+        <link rel="icon" href="/family-tree.png" />
       </Head>
       <Month
         month="JANUARY"
