@@ -1,7 +1,27 @@
 import Head from "next/head";
 import Month from "../components/month";
+import { getClient } from "../lib/sanity";
+import { groq } from 'next-sanity';
+import Image from 'next/image';
 
-export default function Home() {
+export async function getStaticProps() {
+  const query = groq`*[_type == "birthday"]{
+    celebrant,
+    birthdate,
+    "imageUrl": image.asset->url
+  }`
+  const celebrants = await getClient().fetch(query);
+  console.log('celebrants', celebrants)
+  return {
+    props: {
+      celebrants
+    }
+  }
+}
+
+
+export default function Home({celebrants}) {
+  const jan = celebrants.filter(x => '01' === x.birthdate.split('-')[1]);
   return (
     <div className="ml-2 bg-indigo-100">
       <Head>
@@ -10,14 +30,9 @@ export default function Home() {
       </Head>
       <Month
         month="JANUARY"
-        celebrants={[
-          "7th - Rena Rose Lakai",
-          "16th - Kalolaine Fonua Beebe (Kalo)",
-          "20th - Alma Champion Fonua",
-          "28th - Sioeli Kupu",
-        ]}
+        celebrants={jan}
       />
-      <Month
+      {/* <Month
         month="FEBRUARY"
         celebrants={[
           "1st - Tirana Lakai (Nana)",
@@ -109,7 +124,7 @@ export default function Home() {
           "20th - Isaac Levi Fonua",
           "23rd - Joseph Fonua",
         ]}
-      />
+      /> */}
     </div>
   );
 }

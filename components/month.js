@@ -1,4 +1,13 @@
-export default function Month({ month, celebrants }) {
+function calcAge(dateString) {
+  var birthday = +new Date(dateString);
+  return ~~((Date.now() - birthday) / (31557600000));
+}
+
+export default function Month({ month, celebrants}) {
+  
+  const age = calcAge(celebrants.birthdate)
+
+  console.log(age)
   return (
     <>
     <div className="flex flex-col mt-8">
@@ -17,21 +26,21 @@ export default function Month({ month, celebrants }) {
             </thead>
 
             <tbody className="bg-white">
-              {celebrants.map((celebrant) => (
+              {celebrants?.map((celebrant) => (
                 <tr>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
                         <img
                           className="h-10 w-10 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                          src={celebrant.imageUrl}
                           alt=""
                         />
                       </div>
 
                       <div className="ml-4">
                         <div className="text-xl leading-5 font-medium text-gray-900">
-                          {celebrant}
+                          {celebrant.celebrant}
                         </div>
                         {/* <div className="text-sm leading-5 text-gray-500">
                           john@example.com
@@ -42,7 +51,7 @@ export default function Month({ month, celebrants }) {
 
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div className="text-sm leading-5 text-gray-900">
-                      33
+                      {age}
                     </div>
                     {/* <div className="text-sm leading-5 text-gray-500">Web dev</div> */}
                   </td>
