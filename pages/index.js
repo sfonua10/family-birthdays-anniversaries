@@ -3,25 +3,28 @@ import Month from "../components/month";
 import { getClient } from "../lib/sanity";
 import { groq } from 'next-sanity';
 import Image from 'next/image';
+import { calcAge } from '../utils/calculateAge';
 
 export async function getStaticProps() {
   const query = groq`*[_type == "birthday"]{
     celebrant,
     birthdate,
-    "imageUrl": image.asset->url
+    "imageUrl": image.asset->url,
+    image
   }`
   const celebrants = await getClient().fetch(query);
   console.log('celebrants', celebrants)
+  const newCelebrants = celebrants?.map(c => ({...c, age: calcAge(c.birthdate)}));
   return {
     props: {
-      celebrants
+      newCelebrants
     }
   }
 }
 
 
-export default function Home({celebrants}) {
-  const jan = celebrants.filter(x => '01' === x.birthdate.split('-')[1]);
+export default function Home({newCelebrants}) {
+  const jan = newCelebrants?.filter(x => '01' === x.birthdate.split('-')[1]);
   return (
     <div className="ml-2 bg-indigo-100">
       <Head>
