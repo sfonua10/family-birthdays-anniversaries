@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Month from "../components/month";
 import { getClient } from "../lib/sanity";
-import { groq } from 'next-sanity';
-import Image from 'next/image';
-import { calcAge } from '../utils/calculateAge';
-import filterBirthday from '../utils/filterBirthday';
+import { groq } from "next-sanity";
+import Image from "next/image";
+import { calcAge } from "../utils/calculateAge";
+import filterBirthday from "../utils/filterBirthday";
 
 export async function getStaticProps() {
   const query = groq`*[_type == "birthday"]{
@@ -12,29 +12,66 @@ export async function getStaticProps() {
     birthdate,
     "imageUrl": image.asset->url,
     image
-  }`
+  }`;
   const celebrants = await getClient().fetch(query);
   return {
     props: {
-      celebrants
-    }
-  }
+      celebrants,
+    },
+  };
 }
 
-
-export default function Home({celebrants}) {
-  const januaryData = filterBirthday("January", celebrants);
-  const februaryData = filterBirthday("February", celebrants);
-  const marchData = filterBirthday("March", celebrants);
-  const aprilData = filterBirthday("April", celebrants);
-  const mayData = filterBirthday("May", celebrants);
-  const juneData = filterBirthday("June", celebrants);
-  const julyData = filterBirthday("July", celebrants);
-  const augustData = filterBirthday("August", celebrants);
-  const septemberData = filterBirthday("September", celebrants);
-  const octoberData = filterBirthday("October", celebrants);
-  const novemberData = filterBirthday("November", celebrants);
-  const decemberData = filterBirthday("December", celebrants);
+export default function Home({ celebrants }) {
+  const monthData = [
+    {
+      month: "January",
+      monthData: filterBirthday("January", celebrants),
+    },
+    {
+      month: "February",
+      monthData: filterBirthday("February", celebrants),
+    },
+    {
+      month: "March",
+      monthData: filterBirthday("March", celebrants),
+    },
+    {
+      month: "April",
+      monthData: filterBirthday("April", celebrants),
+    },
+    {
+      month: "May",
+      monthData: filterBirthday("May", celebrants),
+    },
+    {
+      month: "June",
+      monthData: filterBirthday("June", celebrants),
+    },
+    {
+      month: "July",
+      monthData: filterBirthday("July", celebrants),
+    },
+    {
+      month: "August",
+      monthData: filterBirthday("August", celebrants),
+    },
+    {
+      month: "September",
+      monthData: filterBirthday("September", celebrants),
+    },
+    {
+      month: "October",
+      monthData: filterBirthday("October", celebrants),
+    },
+    {
+      month: "November",
+      monthData: filterBirthday("November", celebrants),
+    },
+    {
+      month: "December",
+      monthData: filterBirthday("December", celebrants),
+    },
+  ];
 
   return (
     <div className="ml-2 bg-indigo-100">
@@ -42,54 +79,14 @@ export default function Home({celebrants}) {
         <title>Fonua Family Birthdays and Anniversaries</title>
         <link rel="icon" href="/family-tree.png" />
       </Head>
-      <Month
-        month="JANUARY"
-        celebrants={januaryData}
-      />
-      <Month
-        month="February"
-        celebrants={februaryData}
-      />
-      <Month
-        month="March"
-        celebrants={marchData}
-      />
-      <Month
-        month="April"
-        celebrants={aprilData}
-      />
-      <Month
-        month="May"
-        celebrants={mayData}
-      />
-      <Month
-        month="June"
-        celebrants={juneData}
-      />
-      <Month
-        month="July"
-        celebrants={julyData}
-      />
-      <Month
-        month="August"
-        celebrants={augustData}
-      />
-      <Month
-        month="September"
-        celebrants={septemberData}
-      />
-      <Month
-        month="October"
-        celebrants={octoberData}
-      />
-      <Month
-        month="November"
-        celebrants={novemberData}
-      />
-      <Month
-        month="December"
-        celebrants={decemberData}
-      />
+
+      {monthData.map((data) => (
+        <Month
+          key={data.month}
+          month={data.month}
+          celebrants={data.monthData}
+        />
+      ))}
 
       {/* 
       <Month
