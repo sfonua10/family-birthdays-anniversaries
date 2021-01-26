@@ -1,5 +1,7 @@
 export default function Month({ month, celebrants }) {
-  console.log("celebrants", celebrants.map(x => ({...x, dayWithCardinal: x.day + 'th'})));
+  const date = new Date(new Date());
+  const todaysDate = date.toISOString().split('T')[0];
+  console.log("celebrants", celebrants);
   return (
     <>
       <div className="flex flex-col mt-8">
@@ -23,7 +25,7 @@ export default function Month({ month, celebrants }) {
                 {celebrants?.map((celebrant) => {
                   // console.log(`${celebrant.imageUrl}?rect=${`${celebrant?.image?.hotspot?.x},${celebrant?.image?.hotspot?.y},${celebrant?.image?.hotspot?.width},${celebrant?.image?.hotspot?.height}`}`)
                   return (
-                    <tr>
+                    <tr className={`${todaysDate.slice(5) === celebrant.birthdate.slice(5) ? 'bg-green-200 ' : ''}`}>
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="flex items-center justify-around">
                           <div>

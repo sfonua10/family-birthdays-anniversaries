@@ -1,4 +1,5 @@
 import { calcAge } from "./calculateAge";
+import { ordinal_suffix_of } from "./ordinalNumberSuffix";
 
 const monthNames = [
   "January",
@@ -20,11 +21,11 @@ const filterBirthday = (targetMonth = "", data = []) => {
     let [year, month, day] = personObject.birthdate.split("-");
     if (monthNames[parseInt(month) - 1] === targetMonth) {
       personObject.age = calcAge(personObject.birthdate);
-      personObject.day = day;
+      personObject.day = ordinal_suffix_of(day);
       return personObject;
     }
   });
-  const sortedData = targetMonths.sort((a, b) => a.day - b.day);
+  const sortedData = targetMonths.sort((a, b) => parseInt(a.day.slice(0,2)) - parseInt(b.day.slice(0,2)));
   return sortedData;
 };
 
