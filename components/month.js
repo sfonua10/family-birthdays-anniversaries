@@ -1,5 +1,5 @@
 export default function Month({ month, celebrants }) {
-  console.log("celebrants", celebrants);
+  console.log("celebrants", celebrants.map(x => ({...x, dayWithCardinal: x.day + 'th'})));
   return (
     <>
       <div className="flex flex-col mt-8">
@@ -31,7 +31,7 @@ export default function Month({ month, celebrants }) {
                           </div>
                         </div>
                       </td>
-                      <td>
+                      <td className="py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="flex-shrink-0 h-10 w-10">
                           <img
                             className="h-10 w-10 rounded-full"
@@ -41,7 +41,7 @@ export default function Month({ month, celebrants }) {
                           />
                         </div>
                       </td>
-                      <td>
+                      <td className="py-4 whitespace-no-wrap border-b border-gray-200">
                           <div className="text-xl leading-5 font-medium text-gray-900">
                             {celebrant.celebrant}
                           </div>
