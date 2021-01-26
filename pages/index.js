@@ -4,6 +4,7 @@ import { getClient } from "../lib/sanity";
 import { groq } from 'next-sanity';
 import Image from 'next/image';
 import { calcAge } from '../utils/calculateAge';
+import filterBirthday from '../utils/filterBirthday';
 
 export async function getStaticProps() {
   const query = groq`*[_type == "birthday"]{
@@ -13,18 +14,28 @@ export async function getStaticProps() {
     image
   }`
   const celebrants = await getClient().fetch(query);
-  console.log('celebrants', celebrants)
-  const newCelebrants = celebrants?.map(c => ({...c, age: calcAge(c.birthdate)}));
   return {
     props: {
-      newCelebrants
+      celebrants
     }
   }
 }
 
 
-export default function Home({newCelebrants}) {
-  const jan = newCelebrants?.filter(x => '01' === x.birthdate.split('-')[1]);
+export default function Home({celebrants}) {
+  const januaryData = filterBirthday("January", celebrants);
+  const februaryData = filterBirthday("February", celebrants);
+  const marchData = filterBirthday("March", celebrants);
+  const aprilData = filterBirthday("April", celebrants);
+  const mayData = filterBirthday("May", celebrants);
+  const juneData = filterBirthday("June", celebrants);
+  const julyData = filterBirthday("July", celebrants);
+  const augustData = filterBirthday("August", celebrants);
+  const septemberData = filterBirthday("September", celebrants);
+  const octoberData = filterBirthday("October", celebrants);
+  const novemberData = filterBirthday("November", celebrants);
+  const decemberData = filterBirthday("December", celebrants);
+
   return (
     <div className="ml-2 bg-indigo-100">
       <Head>
@@ -33,17 +44,54 @@ export default function Home({newCelebrants}) {
       </Head>
       <Month
         month="JANUARY"
-        celebrants={jan}
+        celebrants={januaryData}
       />
-      {/* <Month
-        month="FEBRUARY"
-        celebrants={[
-          "1st - Tirana Lakai (Nana)",
-          "8th - Naomi Fonua",
-          "21st - LeiSiu Lakai",
-          "23rd - Helaman Teiko Fonua Jr (Teiko)",
-        ]}
+      <Month
+        month="February"
+        celebrants={februaryData}
       />
+      <Month
+        month="March"
+        celebrants={marchData}
+      />
+      <Month
+        month="April"
+        celebrants={aprilData}
+      />
+      <Month
+        month="May"
+        celebrants={mayData}
+      />
+      <Month
+        month="June"
+        celebrants={juneData}
+      />
+      <Month
+        month="July"
+        celebrants={julyData}
+      />
+      <Month
+        month="August"
+        celebrants={augustData}
+      />
+      <Month
+        month="September"
+        celebrants={septemberData}
+      />
+      <Month
+        month="October"
+        celebrants={octoberData}
+      />
+      <Month
+        month="November"
+        celebrants={novemberData}
+      />
+      <Month
+        month="December"
+        celebrants={decemberData}
+      />
+
+      {/* 
       <Month
         month="MARCH"
         celebrants={[

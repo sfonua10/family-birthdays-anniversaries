@@ -1,10 +1,5 @@
-function calcAge(dateString) {
-  var birthday = +new Date(dateString);
-  return ~~((Date.now() - birthday) / (31557600000));
-}
-
 export default function Month({ month, celebrants}) {
-  celebrants.map(c => calcAge(c.birthdate))
+
   return (
     <>
     <div className="flex flex-col mt-8">
@@ -24,8 +19,7 @@ export default function Month({ month, celebrants}) {
 
             <tbody className="bg-white">
               {celebrants?.map((celebrant) => {
-                // const [height, width, x, y] = celebrant?.image?.hotspot;
-                console.log(`${celebrant.imageUrl}?rect=${`${celebrant?.image?.hotspot?.x},${celebrant?.image?.hotspot?.y},${celebrant?.image?.hotspot?.width},${celebrant?.image?.hotspot?.height}`}`)
+                // console.log(`${celebrant.imageUrl}?rect=${`${celebrant?.image?.hotspot?.x},${celebrant?.image?.hotspot?.y},${celebrant?.image?.hotspot?.width},${celebrant?.image?.hotspot?.height}`}`)
                 return(
                 <tr>
                   <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
