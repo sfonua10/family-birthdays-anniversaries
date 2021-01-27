@@ -1,7 +1,6 @@
 export default function Month({ month, celebrants }) {
   const date = new Date(new Date());
   const todaysDate = date.toISOString().split('T')[0];
-  console.log("celebrants", celebrants);
   return (
     <>
       <div className="flex flex-col mt-8">
@@ -10,7 +9,7 @@ export default function Month({ month, celebrants }) {
             <table className="min-w-full table-fixed">
               <thead>
                 <tr>
-                  <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xl leading-4 font-medium text-gray-500 uppercase tracking-wider w-20">
+                  <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xl leading-4 font-medium text-gray-500 uppercase tracking-wider text-center w-20">
                     {month}
                   </th>
                   <th className="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xl leading-4 font-medium text-gray-500 uppercase tracking-wider w-20"></th>
@@ -23,20 +22,21 @@ export default function Month({ month, celebrants }) {
 
               <tbody className="bg-white">
                 {celebrants?.map((celebrant) => {
-                  // console.log(`${celebrant.imageUrl}?rect=${`${celebrant?.image?.hotspot?.x},${celebrant?.image?.hotspot?.y},${celebrant?.image?.hotspot?.width},${celebrant?.image?.hotspot?.height}`}`)
+                  const isBirthday = todaysDate.slice(5) === celebrant.birthdate.slice(5);
+                  console.log(todaysDate.slice(5), celebrant.birthdate.slice(5))
                   return (
-                    <tr className={`${todaysDate.slice(5) === celebrant.birthdate.slice(5) ? 'bg-green-200 ' : ''}`}>
+                    <tr className={`${isBirthday ? 'bg-yellow-200 ' : ''}`}>
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="flex items-center justify-around">
                           <div>
-                            <p className="ordinal text-2xl">{celebrant.day}</p>
+                            <p className={`${isBirthday ? 'animate-bounce' : ''} ordinal text-2xl`}>{celebrant.day}</p>
                           </div>
                         </div>
                       </td>
                       <td className="py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="flex-shrink-0 h-10 w-10">
                           <img
-                            className="h-10 w-10 rounded-full"
+                            className={`${isBirthday ? 'animate-bounce' : ''} h-10 w-10 rounded-full`} 
                             // src={`"${celebrant.imageUrl}?rect=${`${celebrant?.image?.hotspot?.x},${celebrant?.image?.hotspot?.y},${celebrant?.image?.hotspot?.width},${celebrant?.image?.hotspot?.height}`}"`}
                             src={celebrant.imageUrl}
                             alt=""
@@ -44,13 +44,13 @@ export default function Month({ month, celebrants }) {
                         </div>
                       </td>
                       <td className="py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="text-xl leading-5 font-medium text-gray-900">
+                          <div className={`${isBirthday ? 'animate-bounce' : ''} text-xl leading-5 font-medium text-gray-900`}>
                             {celebrant.celebrant}
                           </div>
                       </td>
 
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                        <div className="text-sm leading-5 text-gray-900">
+                        <div className={`${isBirthday ? 'animate-bounce' : ''} text-sm leading-5 text-gray-900`}>
                           {celebrant.age}
                         </div>
                       </td>

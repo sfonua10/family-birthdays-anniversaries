@@ -74,10 +74,19 @@ export default function Home({ celebrants }) {
   ];
 
   return (
-    <div className="ml-2 bg-indigo-100">
+    <div>
       <Head>
         <title>Fonua Family Birthdays and Anniversaries</title>
         <link rel="icon" href="/family-tree.png" />
+        <meta property="og:title" content="European Travel Destinations" />
+        <meta
+          property="og:description"
+          content="Family Birthdays"
+        />
+        <meta
+          property="og:image"
+          content="/bday-pic.jpg"
+        />
       </Head>
 
       {monthData.map((data) => (
