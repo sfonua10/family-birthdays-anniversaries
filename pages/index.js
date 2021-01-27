@@ -12,9 +12,10 @@ export async function getStaticProps() {
     image
   }`;
   const celebrants = await getClient().fetch(query);
+  console.log('celebrants', celebrants)
   return {
     props: {
-      celebrants,
+      celebrants: JSON.parse(JSON.stringify(celebrants)),
     },
   };
 }
