@@ -22,11 +22,11 @@ const filterBirthday = (targetMonth = "", data = []) => {
     if (monthNames[parseInt(month) - 1] === targetMonth) {
       personObject.age = calcAge(personObject.birthdate);
       personObject.day = ordinal_suffix_of(day);
-      return personObject;
+      return JSON.parse(JSON.stringify(personObject));
     }
   });
   const sortedData = targetMonths.sort((a, b) => parseInt(a.day.slice(0,2)) - parseInt(b.day.slice(0,2)));
-  return sortedData;
+  return JSON.parse(JSON.stringify(sortedData));
 };
 
 export default filterBirthday;
