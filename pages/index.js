@@ -11,7 +11,7 @@ export async function getStaticProps() {
     "imageUrl": image.asset->url
   }`;
   const celebrants = await getClient().fetch(query);
-  const data = JSON.parse(JSON.stringify(celebrants)) || [];
+  const data = celebrants || [];
   return {
     props: {
       celebrantsObj: data || []
@@ -19,7 +19,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ celebrantsObj }) {
+export default function Home({ celebrantsObj = [] }) {
   const monthData = [
     {
       month: "January",
@@ -89,9 +89,9 @@ export default function Home({ celebrantsObj }) {
 
       {JSON.parse(JSON.stringify(monthData))?.map((data) => (
         <Month
-          key={data.month}
-          month={data.month}
-          celebrantsObj={data.monthData}
+          key={data?.month}
+          month={data?.month}
+          celebrantsObj={data?.monthData}
         />
       ))}
     </div>
