@@ -8,11 +8,10 @@ export async function getStaticProps() {
   const query = groq`*[_type == "birthday"]{
     celebrant,
     birthdate,
-    "imageUrl": image.asset->url,
-    image
+    "imageUrl": image.asset->url
   }`;
   const celebrants = await getClient().fetch(query);
-  const data = JSON.parse(JSON.stringify(celebrants))
+  const data = JSON.parse(JSON.stringify(celebrants));
   return {
     props: {
       celebrantsObj: data
