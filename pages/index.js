@@ -12,63 +12,63 @@ export async function getStaticProps() {
     image
   }`;
   const celebrants = await getClient().fetch(query);
-  console.log('celebrants', celebrants)
+  const data = JSON.parse(JSON.stringify(celebrants))
   return {
     props: {
-      celebrants: JSON.parse(JSON.stringify(celebrants)),
+      celebrantsObj: data
     },
   };
 }
 
-export default function Home({ celebrants }) {
+export default function Home({ celebrantsObj }) {
   const monthData = [
     {
       month: "January",
-      monthData: filterBirthday("January", celebrants),
+      monthData: filterBirthday("January", celebrantsObj),
     },
     {
       month: "February",
-      monthData: filterBirthday("February", celebrants),
+      monthData: filterBirthday("February", celebrantsObj),
     },
     {
       month: "March",
-      monthData: filterBirthday("March", celebrants),
+      monthData: filterBirthday("March", celebrantsObj),
     },
     {
       month: "April",
-      monthData: filterBirthday("April", celebrants),
+      monthData: filterBirthday("April", celebrantsObj),
     },
     {
       month: "May",
-      monthData: filterBirthday("May", celebrants),
+      monthData: filterBirthday("May", celebrantsObj),
     },
     {
       month: "June",
-      monthData: filterBirthday("June", celebrants),
+      monthData: filterBirthday("June", celebrantsObj),
     },
     {
       month: "July",
-      monthData: filterBirthday("July", celebrants),
+      monthData: filterBirthday("July", celebrantsObj),
     },
     {
       month: "August",
-      monthData: filterBirthday("August", celebrants),
+      monthData: filterBirthday("August", celebrantsObj),
     },
     {
       month: "September",
-      monthData: filterBirthday("September", celebrants),
+      monthData: filterBirthday("September", celebrantsObj),
     },
     {
       month: "October",
-      monthData: filterBirthday("October", celebrants),
+      monthData: filterBirthday("October", celebrantsObj),
     },
     {
       month: "November",
-      monthData: filterBirthday("November", celebrants),
+      monthData: filterBirthday("November", celebrantsObj),
     },
     {
       month: "December",
-      monthData: filterBirthday("December", celebrants),
+      monthData: filterBirthday("December", celebrantsObj),
     },
   ];
 
@@ -88,11 +88,11 @@ export default function Home({ celebrants }) {
         />
       </Head>
 
-      {monthData?.map((data) => (
+      {JSON.parse(JSON.stringify(monthData))?.map((data) => (
         <Month
           key={data.month}
           month={data.month}
-          celebrants={data.monthData}
+          celebrantsObj={data.monthData}
         />
       ))}
     </div>

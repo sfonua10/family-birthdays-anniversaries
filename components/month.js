@@ -1,4 +1,4 @@
-export default function Month({ month = '', celebrants = [] }) {
+export default function Month({ month = '', celebrantsObj = [] }) {
   const date = new Date(new Date());
   const todaysDate = date.toISOString().split('T')[0];
   return (
@@ -21,7 +21,7 @@ export default function Month({ month = '', celebrants = [] }) {
               </thead>
 
               <tbody className="bg-white">
-                {celebrants?.map((celebrant) => {
+                {celebrantsObj?.map((celebrant) => {
                   const isBirthday = todaysDate?.slice(5) === celebrant?.birthdate?.slice(5);
                   return (
                     <tr className={`${isBirthday ? 'bg-yellow-200 ' : ''}`}>
