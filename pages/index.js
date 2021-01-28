@@ -20,9 +20,9 @@ export async function getStaticProps() {
 }
 
 export default function Home({ celebrantsObj = [] }) {
-  (async function saiaQuery() {
-    await getClient().fetch(`*`).then((res) => console.log(res));
-  })();
+  // (async function saiaQuery() {
+  //   await getClient().fetch(`*`).then((res) => console.log(res));
+  // })();
   const monthData = [
     {
       month: "January",
