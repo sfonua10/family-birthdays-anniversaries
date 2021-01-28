@@ -79,7 +79,7 @@ export default function Home({ celebrantsObj = [] }) {
       <Head>
         <title>Family Birthdays</title>
         <link rel="icon" href="/family-tree.png" />
-        <meta property="og:title" content="European Travel Destinations" />
+        <meta property="og:title" content="Family Birthday Timez" />
         <meta
           property="og:description"
           content="Family Birthdays"
