@@ -11,15 +11,18 @@ export async function getStaticProps() {
     "imageUrl": image.asset->url
   }`;
   const celebrants = await getClient().fetch(query);
-  const data = celebrants || [];
+  const data = celebrants;
   return {
     props: {
-      celebrantsObj: data || []
+      celebrantsObj: data 
     },
   };
 }
 
 export default function Home({ celebrantsObj = [] }) {
+  (async function saiaQuery() {
+    await getClient().fetch(`*`).then((res) => console.log(res));
+  })();
   const monthData = [
     {
       month: "January",
