@@ -16,6 +16,7 @@ export async function getStaticProps() {
     props: {
       celebrantsObj: data 
     },
+    revalidate: 1,
   };
 }
 
