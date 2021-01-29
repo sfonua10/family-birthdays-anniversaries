@@ -23,8 +23,10 @@ export default function Month({ month = '', celebrantsObj = [] }) {
               <tbody className="bg-white">
                 {JSON.parse(JSON.stringify(celebrantsObj))?.map((celebrant) => {
                   const isBirthday = todaysDate?.slice(5) === celebrant?.birthdate?.slice(5);
+                  console.log('isBirthday', isBirthday);
+                  console.log('todaysDate', todaysDate);
                   return (
-                    <tr className={`${isBirthday ? 'bg-yellow-200 ' : ''}`}>
+                    <tr key={celebrant?.birthdate} className={`${isBirthday ? 'bg-yellow-200 ' : ''}`}>
                       <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                         <div className="flex items-center justify-around">
                           <div>
