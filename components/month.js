@@ -1,6 +1,6 @@
 export default function Month({ month = '', celebrantsObj = [] }) {
   const date = new Date(new Date());
-  const todaysDate = date.toISOString().split('T')[0];
+  const todaysDate = new Date().toLocaleDateString('pt-br').split( '/' ).reverse( ).join( '-' );
   return (
     <>
       <div className="flex flex-col mt-8">
@@ -22,6 +22,8 @@ export default function Month({ month = '', celebrantsObj = [] }) {
 
               <tbody className="bg-white">
                 {JSON.parse(JSON.stringify(celebrantsObj))?.map((celebrant) => {
+                    console.log('todaysDate', todaysDate)
+                    console.log('celebrant?.birthdate', celebrant?.birthdate)
                   const isBirthday = todaysDate?.slice(5) === celebrant?.birthdate?.slice(5);
                   return (
                     <tr className={`${isBirthday ? 'bg-yellow-200 ' : ''}`}>
