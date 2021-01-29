@@ -22,8 +22,6 @@ export default function Month({ month = '', celebrantsObj = [] }) {
 
               <tbody className="bg-white">
                 {JSON.parse(JSON.stringify(celebrantsObj))?.map((celebrant) => {
-                    console.log('todaysDate', todaysDate)
-                    console.log('celebrant?.birthdate', celebrant?.birthdate)
                   const isBirthday = todaysDate?.slice(5) === celebrant?.birthdate?.slice(5);
                   return (
                     <tr className={`${isBirthday ? 'bg-yellow-200 ' : ''}`}>
